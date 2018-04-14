@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html" charset="UTF-8" >
+<style type="text/css">
+.demo{width:530px;height:530px;margin:100px 0 0 460px;padding:20px;border-top-left-radius:10px;border-top-right-radius:10px}
+.demo .demo1{width:150px;height:150px;background:#66ffcc;margin:0 0 0 0;border-radius:30px}
+.demo .demo2{width:150px;height:150px;background:#66ffcc;margin:-150px 0 0 180px;border-radius:30px}
+.demo .demo3{width:150px;height:150px;background:#66ffcc;margin:-150px 0 0 370px;border-radius:30px}
+.demo .demo4{width:150px;height:150px;background:#66ffcc;margin:20px 0 0 0;border-radius:30px}
+.demo .demo5{width:150px;height:150px;background:#66ffcc;margin:-150px 0 0 180px;border-radius:30px}
+.demo .demo6{width:150px;height:150px;background:#66ffcc;margin:-150px 0 0 370px;border-radius:30px}
+.demo .demo7{width:150px;height:150px;background:#66ffcc;margin:20px 0 0 0;border-radius:30px}
+.demo .demo8{width:150px;height:150px;background:#66ffcc;margin:-150px 0 0 180px;border-radius:30px}
+.demo .demo9{width:150px;height:150px;background:#66ffcc;margin:-150px 0 0 370px;border-radius:30px}
+.input{width:570px;height:100px;background-color:#66ffcc;margin:0 0 0 460px}
+input{width:570px;height:50px}
+</style>
+</head>
+<body>
+<div class="demo">
+  <div class="demo1" id="demo1"></div>
+  <div class="demo2" id="demo2"></div>
+  <div class="demo3" id="demo3"></div>
+  <div class="demo4" id="demo4"></div>
+  <div class="demo5" id="demo5"></div>
+  <div class="demo6" id="demo6"></div>
+  <div class="demo7" id="demo7"></div>
+  <div class="demo8" id="demo8"></div>
+  <div class="demo9" id="demo9"></div>
+  </div>
+  <div class="input">
+  <input type="button" id="btnone" value="start" onclick="start()"></input>
+  <input type="button" value="end" onclick="back()"></input>
+  </div>
+  <script type="text/javascript">
+   
+  function random(min,max){
+   return Math.floor(Math.random()*(max-min+1)+min);
+  }
+ 
+  function change()//随机选取三个宫格随机变换三个颜色
+  {   repeat();
+	  var id=["demo1","demo2","demo3","demo4","demo5","demo6","demo7","demo8","demo9"];
+	  var c=["red","blue","black","green","#330000","#666600","#0000cc","#cc3300","#ffff00"];
+      var arr=new Array(3);//存储变化宫格的数组
+	  var arr1=new Array(3);//存储颜色的数组
+	   for(var i=0;i<=2;i++){
+        var index=random(0,8);
+		var num=random(0,8);
+		arr[i]=num;
+		arr1[i]=index;
+	   }
+       
+	    if(arr[0] == arr[1] || arr[1] == arr[2] || arr[0] == arr[2]){
+		arr[0]=random(0,2);
+		arr[1]=random(3,5);
+		arr[2]=random(6,8);
+		}  //判断arr数组中没有重复的数字
+        if(arr1[0] == arr1[1] || arr1[1] == arr1[2] || arr1[0] == arr1[2]){
+		arr1[0]=random(0,2);
+		arr1[1]=random(3,5);
+		arr1[2]=random(6,8);
+		}  //判断arr1数组中没有重复的数字
+		
+		for(var j=0;j<=arr.length-1;j++){
+        var color=c[arr1[j]];
+        var name=id[arr[j]];
+        var demo=document.getElementById(name);
+        demo.style.backgroundColor=color;		
+        } 
+	  
+   //alert(name);
+  }
+  function repeat(){//重置颜色
+	  var de1=document.getElementById("demo1");
+	  de1.style.background="#66ffcc";
+	  var de2=document.getElementById("demo2");
+	 de2.style.background="#66ffcc";
+	 var de3=document.getElementById("demo3");
+	 de3.style.background="#66ffcc";
+	 var de4=document.getElementById("demo4");
+	 de4.style.background="#66ffcc";
+	 var de5=document.getElementById("demo5");
+	 de5.style.background="#66ffcc";
+	 var de6=document.getElementById("demo6");
+	 de6.style.background="#66ffcc";
+	 var de7=document.getElementById("demo7");
+	 de7.style.background="#66ffcc";
+	 var de8=document.getElementById("demo8");
+	 de8.style.background="#66ffcc";
+	 var de9=document.getElementById("demo9");
+	 de9.style.background="#66ffcc";
+   }
+  function start(){//按钮start的Onclick函数
+  
+  c=setInterval(function(){
+  change();
+  },1000)
+  return c;
+  }
+  function back(){//按钮end的Onclick函数
+   repeat();
+   clearInterval(c);
+  }
+
+  </script>
+</body>
+</html>
